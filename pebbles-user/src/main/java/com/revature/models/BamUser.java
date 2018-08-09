@@ -1,26 +1,72 @@
 package com.revature.models;
 
-public class BamUser {
+import java.io.Serializable;
 
-	private int id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+@Table(name="BAM_USER")
+public class BamUser implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name="bam_user_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
+	
+	@NotNull
+	@Column(name="firstname")
 	private String firstname;
+	
+	@NotNull
+	@Column(name="lastname")
 	private String lastname;
+	
+	@Email
+	@NotNull
+	@Column(name="email")
 	private String email;
-	private int roleId;
-	private int statusId;
+	
+	@NotNull
+	@Column(name="role_id")
+	private Integer role_id;
+	
+	@NotNull
+	@Column(name="status_id")
+	private Integer status_id;
 	
 	public BamUser() {
 		
 	}
 
-	public BamUser(int id, String firstname, String lastname, String email, int roleId, int statusId) {
+	public BamUser(String firstname, String lastname, String email, int role_id, int status_id) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.role_id = role_id;
+		this.status_id = status_id;
+	}
+
+	public BamUser(int id, String firstname, String lastname, String email, int role_id, int status_id) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
-		this.roleId = roleId;
-		this.statusId = statusId;
+		this.role_id = role_id;
+		this.status_id = status_id;
 	}
 
 	public int getId() {
@@ -55,20 +101,20 @@ public class BamUser {
 		this.email = email;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	public int getRole_id() {
+		return role_id;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole_id(int role_id) {
+		this.role_id = role_id;
 	}
 
-	public int getStatusId() {
-		return statusId;
+	public int getStatus_id() {
+		return status_id;
 	}
 
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
+	public void setStatus_id(int status_id) {
+		this.status_id = status_id;
 	}
 
 	@Override
@@ -77,10 +123,10 @@ public class BamUser {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
-		result = prime * result + roleId;
-		result = prime * result + statusId;
+		result = prime * result + ((role_id == null) ? 0 : role_id.hashCode());
+		result = prime * result + ((status_id == null) ? 0 : status_id.hashCode());
 		return result;
 	}
 
@@ -103,16 +149,25 @@ public class BamUser {
 				return false;
 		} else if (!firstname.equals(other.firstname))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (lastname == null) {
 			if (other.lastname != null)
 				return false;
 		} else if (!lastname.equals(other.lastname))
 			return false;
-		if (roleId != other.roleId)
+		if (role_id == null) {
+			if (other.role_id != null)
+				return false;
+		} else if (!role_id.equals(other.role_id))
 			return false;
-		if (statusId != other.statusId)
+		if (status_id == null) {
+			if (other.status_id != null)
+				return false;
+		} else if (!status_id.equals(other.status_id))
 			return false;
 		return true;
 	}
@@ -120,7 +175,7 @@ public class BamUser {
 	@Override
 	public String toString() {
 		return "BamUser [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-				+ ", roleId=" + roleId + ", statusId=" + statusId + "]";
+				+ ", role_id=" + role_id + ", status_id=" + status_id + "]";
 	}
 	
 }
