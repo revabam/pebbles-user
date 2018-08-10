@@ -8,4 +8,5 @@ import com.revature.models.BamUser;
 @Repository
 public interface BamUserRepository extends JpaRepository<BamUser, Integer> {
 
+	BamUser findBamUserByEmail(String email);
 }

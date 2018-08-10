@@ -54,9 +54,22 @@ public class BamUserController {
 		BamUser user = bamUserService.addUser(newUser);
 		return new ResponseEntity<BamUser>(user, HttpStatus.CREATED);
 	}
+
+	@PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BamUser> loginUser(@RequestBody BamUser user) {
+		System.out.println("[DEBUG] - in BamUserController.loginUser()");
+		BamUser loggedUser = bamUserService.loginUser(user);
+
+		if(loggedUser == null) {
+			return new ResponseEntity<BamUser>(loggedUser, HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<BamUser>(loggedUser, HttpStatus.OK);
+		}
+	}
 	
 	@PutMapping(produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BamUser> updateUser(@Valid @RequestBody BamUser updatedUser) {
+		System.out.println("[DEBUG] - in BamUserController.updateUser()");
 		BamUser user = bamUserService.updateUser(updatedUser);
 		return new ResponseEntity<BamUser>(user, HttpStatus.OK);
 	}

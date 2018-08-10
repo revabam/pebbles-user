@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -16,13 +17,14 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name="BAM_USER")
+@SequenceGenerator(name="bam_user_seq", sequenceName="bam_user_seq", allocationSize=1)
 public class BamUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name="bam_user_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="bam_user_seq")
 	private Integer id;
 	
 	@NotNull
@@ -35,7 +37,7 @@ public class BamUser implements Serializable {
 	
 	@Email
 	@NotNull
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	private String email;
 	
 	@NotNull

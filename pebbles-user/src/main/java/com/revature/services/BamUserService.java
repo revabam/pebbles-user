@@ -28,6 +28,10 @@ public class BamUserService {
 		return bamUserRepo.save(newUser);
 	}
 	
+	public BamUser loginUser(BamUser user) {
+		return bamUserRepo.findBamUserByEmail(user.getEmail());
+	}
+	
 	public BamUser updateUser(BamUser updatedUser) {
 		BamUser user = findUserById(updatedUser.getId());
 		
