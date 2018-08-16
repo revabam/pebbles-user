@@ -17,14 +17,14 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name="BAM_USER")
-@SequenceGenerator(name="bam_user_seq", sequenceName="bam_user_seq", allocationSize=1)
+@SequenceGenerator(name="bam_user_seq_name", sequenceName="bam_user_seq", initialValue=5, allocationSize=1)
 public class BamUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="bam_user_id")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="bam_user_seq")
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="bam_user_seq_name")
 	private Integer id;
 	
 	@NotNull
