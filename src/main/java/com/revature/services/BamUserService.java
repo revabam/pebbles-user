@@ -21,7 +21,7 @@ public class BamUserService {
 	}
 	
 	public BamUser findUserById(Integer id) {
-		return bamUserRepo.getOne(id);
+		return bamUserRepo.findBamUserById(id);
 	}
 	
 	public BamUser addUser(BamUser newUser) {
@@ -33,7 +33,7 @@ public class BamUserService {
 	}
 	
 	public BamUser updateUser(BamUser updatedUser) {
-		BamUser user = findUserById(updatedUser.getId());
+		BamUser user = bamUserRepo.findBamUserById(updatedUser.getId());
 		
 		if(user == null) {
 			return user;

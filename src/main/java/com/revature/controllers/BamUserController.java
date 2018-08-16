@@ -68,7 +68,7 @@ public class BamUserController {
 	}
 	
 	@PutMapping(produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BamUser> updateUser(@Valid @RequestBody BamUser updatedUser) {
+	public ResponseEntity<BamUser> updateUser(@RequestBody BamUser updatedUser) {
 		System.out.println("[DEBUG] - in BamUserController.updateUser()");
 		BamUser user = bamUserService.updateUser(updatedUser);
 		return new ResponseEntity<BamUser>(user, HttpStatus.OK);
