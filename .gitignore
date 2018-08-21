@@ -83,9 +83,6 @@ RemoteSystemsTempFiles/
 .scala_dependencies 
 .worksheet 
 
-# .properties files
-*.properties
-
 # package-lock.json
 package-lock.json
 
