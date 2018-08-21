@@ -1,0 +1,7 @@
+com\revature\services\BamUserService.class
+com\revature\models\BamUser.class
+com\revature\models\Role.class
+com\revature\controllers\BamUserController.class
+com\revature\models\Status.class
+com\revature\repositories\BamUserRepository.class
+com\revature\Application.class
