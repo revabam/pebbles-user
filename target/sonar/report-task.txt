@@ -1,0 +1,6 @@
+projectKey=com.revature:pebbles-user
+serverUrl=http://localhost:9000
+serverVersion=6.7.5.38563
+dashboardUrl=http://localhost:9000/dashboard/index/com.revature:pebbles-user
+ceTaskId=AWVESGpdUGHyEw9KRny2
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWVESGpdUGHyEw9KRny2
