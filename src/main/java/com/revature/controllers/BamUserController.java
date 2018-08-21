@@ -22,19 +22,32 @@ import com.revature.services.BamUserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping
 public class BamUserController {
 	
 	@Autowired
 	BamUserService bamUserService;
-	
+
+	/**
+	* Retrieves a List of all BamUsers from a database.
+	*
+	*@return A List of BamUsers from a database, and a corresponding Http Status Code in a ResponseEntity
+	*@author Brandon Scoggins, Batch: 1806-Jun18-Java-USF, Trainer: Wezley Singleton
+	*/
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<BamUser>> findAllUsers() {
 		System.out.println("[DEBUG] - in BamUserController.findAllUsers()");
 		List<BamUser> allUsers =  bamUserService.findAllUsers();
 		return new ResponseEntity<List<BamUser>>(allUsers, HttpStatus.OK);
 	}
-	
+
+	/**
+	* Retrieves a specific BamUser from a database by their id.
+	* 
+	*@param id An id that uniquely identifies a BamUser in the database
+	*@return A BamUser matching the pathVariable id, and a corresponding Http Status Code in a ResponseEntity
+	*@author Brandon Scoggins, Batch: 1806-Jun18-Java-USF, Trainer: Wezley Singleton
+	*/
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BamUser> findUserById(@PathVariable("id") int id) {
 		System.out.println("[DEBUG] - in BamUserController.findUserById()");
@@ -42,12 +55,20 @@ public class BamUserController {
 		BamUser user = bamUserService.findUserById(id);
 		
 		if(user == null) {
-			return new ResponseEntity<BamUser>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<BamUser>(user, HttpStatus.NOT_FOUND);
 		} else {
 			return new ResponseEntity<BamUser>(user, HttpStatus.OK);
 		}
 	}
 
+	/**
+	* Takes a BamUser object from a request body, and persist it to a database.
+	* 
+	*@param newUser The new BamUser to be added to the database
+	*@return The BamUser that was added to the database with its generated id, and a corresponding 
+	*			Http Status Code in a ResponseEntity
+	*@author Brandon Scoggins, Batch: 1806-Jun18-Java-USF, Trainer: Wezley Singleton
+	*/
 	@PostMapping(produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BamUser> addUser(@Valid @RequestBody BamUser newUser) {
 		System.out.println("[DEBUG] - in BamUserController.addUser()");
@@ -55,6 +76,14 @@ public class BamUserController {
 		return new ResponseEntity<BamUser>(user, HttpStatus.CREATED);
 	}
 
+	/**
+	* Uses the email property of a BamUser object from the request body to retrieve a full BamUser object from a database.
+	*
+	*@param user A BamUser object containing at minimum an email field
+	*@return A BamUser from the database that corresponds to the unique email found in the request body, 
+	* 			and a corresponding Http Status Code in a ResponseEntity
+	*@author Brandon Scoggins, Batch: 1806-Jun18-Java-USF, Trainer: Wezley Singleton
+	*/
 	@PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BamUser> loginUser(@RequestBody BamUser user) {
 		System.out.println("[DEBUG] - in BamUserController.loginUser()");
@@ -66,7 +95,14 @@ public class BamUserController {
 			return new ResponseEntity<BamUser>(loggedUser, HttpStatus.OK);
 		}
 	}
-	
+
+	/**
+	* Takes a BamUser object from a request body, and updates it in a database.
+	* 
+	*@param updatedUser	An updated BamUser that is to be updated in the database
+	*@return The updated BamUser object as it exist in the database, and a corresponding Http Status Code in a ResponseEntity
+	*@author Brandon Scoggins, Batch: 1806-Jun18-Java-USF, Trainer: Wezley Singleton
+	*/
 	@PutMapping(produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BamUser> updateUser(@RequestBody BamUser updatedUser) {
 		System.out.println("[DEBUG] - in BamUserController.updateUser()");
