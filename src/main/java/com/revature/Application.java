@@ -22,6 +22,12 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	/**
+	* This method is required for Swagger documentation of this service.
+	* 
+	*@return A Docket necessary for Swagger documentation
+	*@author Brandon Scoggins, Batch: 1806-Jun18-Java-USF, Trainer: Wezley Singleton
+	*/
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.revature"))
