@@ -85,7 +85,6 @@ RemoteSystemsTempFiles/
 
 # .properties files
 *.properties
-!application.properties
 
 # package-lock.json
 package-lock.json
