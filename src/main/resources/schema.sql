@@ -1,14 +1,17 @@
-CREATE TABLE role
+DROP TABLE IF EXISTS role CASCADE;
+CREATE TABLE IF NOT EXISTS role
 (id INTEGER NOT NULL,
 role VARCHAR(25) UNIQUE,
 PRIMARY KEY (id));
 
-CREATE TABLE status
+DROP TABLE IF EXISTS status CASCADE;
+CREATE TABLE IF NOT EXISTS status
 (id INTEGER NOT NULL,
 status VARCHAR(25) UNIQUE,
 PRIMARY KEY (id));
 
-CREATE TABLE bam_user
+DROP TABLE IF EXISTS bam_user CASCADE;
+CREATE TABLE IF NOT EXISTS bam_user
 (id INTEGER NOT NULL,
 firstname VARCHAR(25) NOT NULL,
 lastname VARCHAR(25) NOT NULL,
@@ -19,4 +22,5 @@ PRIMARY KEY (id),
 foreign key (role_id) references role(id),
 foreign key (status_id) references status(id));
 
-CREATE SEQUENCE bam_user_seq START WITH 5;
+DROP SEQUENCE IF EXISTS bam_user_seq;
+CREATE SEQUENCE IF NOT EXISTS bam_user_seq START WITH 5;
