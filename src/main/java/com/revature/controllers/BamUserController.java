@@ -24,7 +24,7 @@ import com.revature.services.BamUserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("/users")
 public class BamUserController {
 
 	@Autowired
