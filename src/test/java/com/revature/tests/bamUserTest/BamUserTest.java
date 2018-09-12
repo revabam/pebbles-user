@@ -20,7 +20,7 @@ import io.restassured.RestAssured;
 @ContextConfiguration(classes=Application.class)
 public class BamUserTest extends TestDriver {
 
-	static String url = "http://localhost:9998";
+	static String url = "http://localhost:10001/users";
 
 	@Test
 	public void canGetAllUsers() {
@@ -29,7 +29,7 @@ public class BamUserTest extends TestDriver {
 
 	@Test
 	public void canAddUser() {
-		BamUser newUser = new BamUser(0, "Christian", "DeFaria", "cd@gmail.com", 1, 1);
+		BamUser newUser = new BamUser(0, "Christian", "DeFaria", "cdefaria@gmail.com", 1, 1);
 
 		JsonObject json = new JsonObject();
 		json.addProperty("user", newUser.toString());
@@ -41,7 +41,7 @@ public class BamUserTest extends TestDriver {
 
 	@Test
 	public void canGetUserByEmail() {
-		BamUser newUser = new BamUser(0, "Dillon", "Qsee", "dillonq@revature.com", 2, 1);
+		BamUser newUser = new BamUser(0, "Dylan", "Mcbee", "dmcbee@revature.com", 2, 1);
 
 		JsonObject json = new JsonObject();
 		json.addProperty("user", newUser.toString());
@@ -55,7 +55,7 @@ public class BamUserTest extends TestDriver {
 
 	@Test
 	public void canNotGetUserByEmail() {
-		BamUser newUser = new BamUser(1, "Brandon", "Scoggins", "bs@gmail.com", 1, 1);
+		BamUser newUser = new BamUser(1, "Brandon", "Scoggins", "bscoggins@gmail.com", 1, 1);
 
 		JsonObject json = new JsonObject();
 		json.addProperty("user", newUser.toString());
@@ -69,7 +69,7 @@ public class BamUserTest extends TestDriver {
 
 	@Test
 	public void canGetUserById() {
-		BamUser testUser = new BamUser(4, "Dillon", "Qsee", "dillonq@revature.com", 2, 1);
+		BamUser testUser = new BamUser(4, "Dylan", "Mcbee", "dmcbee@revature.com", 2, 1);
 		BamUser user = RestAssured.get(url + "/4").body().as(BamUser.class);
 
 		assertEquals(testUser, user);
@@ -78,7 +78,7 @@ public class BamUserTest extends TestDriver {
 
 	@Test
 	public void canUpdateUser() {
-		BamUser updatedUser = new BamUser(4, "Dillon", "Qsee", "dillonq@revature.com", 2, 1);
+		BamUser updatedUser = new BamUser(4, "Dylan", "Mcbee", "dmcbee@revature.com", 2, 1);
 
 		JsonObject json = new JsonObject();
 		json.addProperty("user", updatedUser.toString());
